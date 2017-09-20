@@ -6,12 +6,6 @@ import matplotlib.pyplot as plt
 
 fs = 44100
 
-def recordSound(duration):
-    print("recording for the next " , duration , " seconds")
-    audio = sd.rec(int(duration*fs), fs, channels=4)
-    sd.wait()
-    return audio[:,0]
-
 def playSound(sound):
     print("playing audio")
     sd.play(sound, fs)
@@ -27,14 +21,10 @@ def generateWave(putin,duration):
         sound[i] = np.sin(2*math.pi  * key[0] * (i/fs)) + np.sin(2*math.pi  * key[1] * (i/fs))
     return sound
 
-
-beep = generateWave(1,1)
-playSound(beep)
-beep = generateWave(2,1)
-playSound(beep)
-beep = generateWave(3,1)
-playSound(beep)
-beep = generateWave(4,1)
-playSound(beep)
-plt.plot(np.arange(1000),beep[:1000])
-plt.show()
+while(True):
+    print('Digite um numero :')
+    key = int(input())
+    beep = generateWave(key,1)
+    playSound(beep)
+    plt.plot(np.arange(1000),beep[:1000])
+    plt.show()
