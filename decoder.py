@@ -2,9 +2,11 @@ import sounddevice as sd
 import numpy as np
 import math
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 import time
 
 fs = 44100
+globalDuration = 1
 
 def recordSound(duration):
     print("recording for the next " , duration , " seconds")
@@ -30,7 +32,27 @@ def continuosRec(iterations):
         plt.plot(timeLenght,audio)
         plt.pause(0.0001)
         audioSplit =  recordSound(1 / iterations)
-        audio = np.concatenate([audio[(fs / iterations ):] , audioSplit])
+        audio = np.concatenate([audio[(len(audio) / iterations ):] , audioSplit])
+
+
+
+
+def gabsContribuition(duration):
+    duration = 1
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(1,1,1)
+    plt.xlabel('Time')
+    plt.ylabel('sin(x)')
+    def animate(i):
+        audio = sd.rec(int(1*fs), fs, channels=1)
+        y = audio[:,0]
+        t = np.linspace(0,1,fs*duration)    
+        ax1.clear()
+        ax1.plot(t[0:1000],y[0:1000])
+        
+    ani = animation.FuncAnimation(fig, animate, interval=1000)
+    plt.show()
 
 def recordBeep(duration):
     while True:
