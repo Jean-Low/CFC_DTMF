@@ -14,7 +14,7 @@ Cada um dos tons correspondentes aos numeros de 0 a 9 é gerado com base em duas
 | <b>941 Hz</b>|<i>*</i>|0|#|D|
 
 
-| <b>Forma do polinômio</b> | <b>Conteudo </b>   |
+| <b>1209 Hz</b> | <b>1336 Hz</b> | <b>1477 Hz</b>   | <b>1633 Hz</b>   |
 |-------------|--------------------|
 | Hexadecimal |         0x18005    |
 | Binária     |  11000000000000101 |
