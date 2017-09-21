@@ -19,4 +19,4 @@ Logo, para gerar o tom do número 7, é preciso somar as senoidais dadas por sen
 
 Nesta seção serão comparaados os gráficos das frequências enviadas pelo encoder e recebidas pelo decoder
 
-![Diagrama](img/encode0.png=250x250) ![Diagrama](img/decode0.png=250x250)
+![Diagrama](img/encode0.png | width=100) ![Diagrama](img/decode0.png  width=1000)
