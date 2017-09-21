@@ -12,3 +12,10 @@ Cada um dos tons correspondentes aos numeros de 0 a 9 é gerado com base em duas
 | <b>770 Hz</b>|4|5|6|B|
 | <b>852 Hz</b>|7|8|9|C|
 | <b>941 Hz</b>|<i>*</i>|0|#|D|
+
+
+| <b>Forma do polinômio</b> | <b>Conteudo </b>   |
+|-------------|--------------------|
+| Hexadecimal |         0x18005    |
+| Binária     |  11000000000000101 |
+| Polinomial  | x^16+x^15+x^12+x^0 |
