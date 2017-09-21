@@ -66,7 +66,6 @@ def recordBeep(duration):
             print('Escolha:\n1-gravar\n2-reproduzir\n3-mostrar grafico\n4-tentar novamente\n5-carregar')
             choice = int(input())
             if(choice == 1):
-                #TODO-gravar com pickle
                 print('Digite o nome do arquivo (Sem extensão):')
                 name = input()
                 pickle.dump(audio,open('Saves/' + name + '.p','wb'))
@@ -90,7 +89,7 @@ def recordBeep(duration):
                 break
             elif(choice == 5):
                 print('Os seguintes saves foram encontrados:')
-                for i in os.listdir('Saves'):
+                for i in sorted(os.listdir('Saves')):
                     print(' - ' + i)
                 print('qual o nome do arquivo que deseja carregar (sem extensão):')
                 name = input()
