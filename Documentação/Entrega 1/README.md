@@ -15,6 +15,8 @@ Cada um dos tons correspondentes aos numeros de 0 a 9 é gerado com base em <b>d
 
 Logo, para gerar o tom do número 7, é preciso somar as senoidais dadas por sen(2πft), sendo f as respectivas frequências e t o tempo dado com 44100 <i> steps </i>. 
 
-##Comparação dos Gráficos
+## Comparação dos Gráficos
 
 Nesta seção serão comparaados os gráficos das frequências enviadas pelo encoder e recebidas pelo decoder
+
+![Diagrama](img/encode0.png) ![Diagrama](img/decode0.png)
