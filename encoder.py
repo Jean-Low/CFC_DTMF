@@ -25,9 +25,9 @@ def generateWave(putin,duration):
 while(True):
     print('Digite um numero :')
     key = int(input())
-    beep = generateWave(key,1)
+    beep = generateWave(key,3)
     playSound(beep)
-    plt.plot(np.arange(5000),beep[:5000])
+    plt.plot(np.arange(1000),beep[:1000])
     plt.show()
-    plt.plot(np.arange(5000),fft(beep[:5000]))
+    plt.plot(np.arange(1000),fft(beep[:1000]))
     plt.show()
