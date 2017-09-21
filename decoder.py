@@ -4,6 +4,8 @@ import math
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import time
+import pickle
+import os
 
 fs = 44100
 globalDuration = 1
@@ -60,12 +62,14 @@ def recordBeep(duration):
         input()
         audio=recordSound(duration)
         while True:
-            print('Escolha:\n1-gravar\n2-reproduzir\n3-mostrar grafico\n4-tentar novamente')
+            print('Escolha:\n1-gravar\n2-reproduzir\n3-mostrar grafico\n4-tentar novamente\n5-carregar')
             choice = int(input())
             if(choice == 1):
                 #TODO-gravar com pickle
-                print('gravado')
-                break
+                print('Digite o nome do arquivo (Sem extensão):')
+                name = input()
+                pickle.dump(audio,open('Saves/' + name + '.p','wb'))
+                print('gravado\n')
             elif(choice == 2):
                 playSound(audio)
             elif(choice == 3):
@@ -73,11 +77,19 @@ def recordBeep(duration):
                 plt.show()
             elif(choice == 4):
                 break
+            elif(choice == 5):
+                print('Os seguintes saves foram encontrados:')
+                for i in os.listdir('Saves'):
+                    print(' - ' + i)
+                print('qual o nome do arquivo que deseja carregar (sem extensão):')
+                name = input()
+                audio = pickle.load(open('Saves/' + name + '.p','rb'))
+                print('carregado')
             else:
                 print('opção invalida')
 
 
-print('Bem vindo ao inpressionivel DTMF-pro-ultra-master\nRelease 1\n')
+print('Bem vindo ao impressionivel DTMF-pro-ultra-master\nRelease 1\n')
 print('Temos 2 funcionalidades:\n o incrivel Real-Time-Sound-Ploting Deluxe Edition\n ou o \nimprescindivel Beep-Recording-VX Professional\nfaça a sua escolha:')
 choice = int(input())
 if(choice == 1):
