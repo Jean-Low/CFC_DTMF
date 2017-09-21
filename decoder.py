@@ -32,6 +32,7 @@ def continuosRec(iterations):
     while True:
         print('updating')
         plt.clf()
+        plt.ylim([-0.4,0.4])
         plt.plot(timeLenght,audio)
         plt.pause(0.0001)
         audioSplit =  recordSound(1 / iterations)
@@ -63,7 +64,7 @@ def recordBeep(duration):
         input()
         audio=recordSound(duration)
         while True:
-            print('Escolha:\n1-gravar\n2-reproduzir\n3-mostrar grafico\n4-tentar novamente\n5-carregar')
+            print('Escolha:\n1-Salvar\n2-Reproduzir\n3-Mostrar grafico\n4-Gravar novamente\n5-Carregar save')
             choice = int(input())
             if(choice == 1):
                 print('Digite o nome do arquivo (Sem extensão):')
@@ -75,17 +76,20 @@ def recordBeep(duration):
             elif(choice == 3):
                 print('Aplicar transformada de fourier ? (Y ou N)')
                 ft = input()
-                print('mostrar um zoom do grafico ? (Y ou N)')
-                zoom = input()
                 if(ft == 'y'):
-                    plt.plot(np.arange(len(audio) if zoom == 'n' else 1000),fft(audio if zoom == 'n' else audio[40000:41000]))
+                    fftAudio = np.abs(fft(audio))
+                    plt.plot(np.arange(2000),fftAudio[:2000])
                     plt.show()
                 elif(ft == 'n'):
+                    print('mostrar um zoom do grafico ? (Y ou N)')
+                    zoom = input()
                     plt.plot(np.arange(len(audio) if zoom == 'n' else 1000),audio if zoom == 'n' else audio[40000:41000])
                     plt.show()
                 else:
                     print('opção invalida')
             elif(choice == 4):
+                print('Quanto tempo você quer gravar?')
+                duration = (int(input()))
                 break
             elif(choice == 5):
                 print('Os seguintes saves foram encontrados:')
@@ -100,7 +104,7 @@ def recordBeep(duration):
 
 
 print('Bem vindo ao impressionivel DTMF-pro-ultra-master\nRelease 1\n')
-print('Temos 2 funcionalidades:\n o incrivel Real-Time-Sound-Ploting Deluxe Edition\n ou o \nimprescindivel Beep-Recording-VX Professional\nfaça a sua escolha:')
+print('Temos 2 funcionalidades:\n1 - O incrivel Real-Time-Sound-Ploting Deluxe Edition\nou\n2 - O imprescindivel Beep-Recording-VX Professional\nfaça a sua escolha:')
 choice = int(input())
 if(choice == 1):
     print('Otima escolha!\nDiga-nos quantas interações por segundo você deseja (padrão: 5):')
