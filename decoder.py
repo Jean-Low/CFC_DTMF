@@ -76,11 +76,13 @@ def recordBeep(duration):
             elif(choice == 3):
                 print('Aplicar transformada de fourier ? (Y ou N)')
                 ft = input()
+                print('mostrar um zoom do grafico ? (Y ou N)')
+                zoom = input()
                 if(ft == 'y'):
-                    plt.plot(np.arange(len(audio)),fft(audio))
+                    plt.plot(np.arange(len(audio) if zoom == 'n' else 1000),fft(audio if zoom == 'n' else audio[40000:41000]))
                     plt.show()
                 elif(ft == 'n'):
-                    plt.plot(np.arange(len(audio)),audio)
+                    plt.plot(np.arange(len(audio) if zoom == 'n' else 1000),audio if zoom == 'n' else audio[40000:41000])
                     plt.show()
                 else:
                     print('opção invalida')
