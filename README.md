@@ -6,7 +6,7 @@ Esta etapa do projeto consiste na construção de um código que gera tons utili
 
 Cada um dos tons correspondentes aos numeros de 0 a 9 é gerado com base em duas frequências, mostradas na tabela a seguir:
 
-| <b></b>      | <b>1209 Hz</b> | <b>1336 Hz</b> | <b>1477 Hz</b>   | <b>1633 Hz</b>   |
+|    | <b>1209 Hz</b> | <b>1336 Hz</b> | <b>1477 Hz</b>   | <b>1633 Hz</b>   |
 |-------------|--------------------|-------------|--------------------|
 | <b>697 Hz</b>|      1         |        2       |        3         |           A      |
 | <b>770 Hz</b>|4|5|6|B|
