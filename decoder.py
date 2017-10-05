@@ -28,6 +28,7 @@ def continuosRec(iterations):
     timeLenght = np.arange(len(audio))
     print(len(audio))
     plt.ion()
+    print(iterations)
 
     while True:
         print('updating')
@@ -36,10 +37,7 @@ def continuosRec(iterations):
         plt.plot(timeLenght,audio)
         plt.pause(0.0001)
         audioSplit =  recordSound(1 / iterations)
-        audio = np.concatenate([audio[(len(audio) / iterations ):] , audioSplit])
-
-
-
+        audio = np.concatenate([audio[(len(audio) // iterations ):] , audioSplit])
 
 def gabsContribuition(duration):
     duration = 1
@@ -58,13 +56,49 @@ def gabsContribuition(duration):
     ani = animation.FuncAnimation(fig, animate, interval=1000)
     plt.show()
 
+def Identify(fftAudio):
+    HFList = []
+    peek = 0
+    #plt.plot(np.arange(2000),fftAudio[:2000])
+    #plt.show()
+    for v in fftAudio[:2000]:
+        if v > peek:
+            peek = v
+    threshold = peek * 0.4
+    for i in range(600,2000):
+        if(fftAudio[i]) >= threshold:
+            HFList.append(i)
+    
+    print(HFList)
+    High = []
+    Low = []
+    for v in HFList:
+        if v > 1100:
+            High.append(v)
+        else:
+            Low.append(v)
+    keyPad = [[1,2,3,"A"],[4,5,6,"B"],[7,8,9,"C"],["*",0,"#","D"]]
+    HighGroup = [1209,1336,1477,1633]
+    LowGroup = [697,770,852,941]
+    H = 0
+    L = 0
+    for i in range(4):
+        if (HighGroup[i] == High[0]):
+            H = i
+        if(LowGroup[i] == Low[0]):
+            L = i
+
+    print(H,L)
+    return keyPad[L][H]
+    
+    
 def recordBeep(duration):
     while True:
         print('Iremos gravar o audio com o beep.\nAperte enter para continuar...')
         input()
         audio=recordSound(duration)
         while True:
-            print('Escolha:\n1-Salvar\n2-Reproduzir\n3-Mostrar grafico\n4-Gravar novamente\n5-Carregar save')
+            print('Escolha:\n1-Salvar\n2-Reproduzir\n3-Mostrar grafico\n4-Gravar novamente\n5-Carregar save\n6-Identificar sinal')
             choice = int(input())
             if(choice == 1):
                 print('Digite o nome do arquivo (Sem extensão):')
@@ -99,10 +133,17 @@ def recordBeep(duration):
                 name = input()
                 audio = pickle.load(open('Saves/' + name + '.p','rb'))
                 print('carregado')
+            elif(choice == 6):
+                print('Otima escolha!\nVocê deseja...\n1-Identificar o sinal por save\n2-Identificar em tempo real')
+                choice = (int(input()))
+                if(choice == 1):
+                    print(Identify(np.abs(fft(audio))))
+                break
             else:
                 print('opção invalida')
 
 
+plt.grid()
 print('Bem vindo ao impressionivel DTMF-pro-ultra-master\nRelease 1\n')
 print('Temos 2 funcionalidades:\n1 - O incrivel Real-Time-Sound-Ploting Deluxe Edition\nou\n2 - O imprescindivel Beep-Recording-VX Professional\nfaça a sua escolha:')
 choice = int(input())
