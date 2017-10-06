@@ -44,5 +44,6 @@ while(True):
 	plt.title('Transmitido', fontsize=18)
 	plt.xlabel('Frequencia (Hz)', fontsize=16)
 	plt.ylabel('Decibel(dB)', fontsize=16)
+	plt.grid()
 	plt.show()
 
