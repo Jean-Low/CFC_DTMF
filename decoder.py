@@ -56,6 +56,40 @@ def gabsContribuition(duration):
     ani = animation.FuncAnimation(fig, animate, interval=1000)
     plt.show()
 
+def FourierAoVivaco(duration):
+    notgood = '''
+    duration = 1
+    fig = plt.figure()
+    ax1 = fig.add_subplot(1,1,1)
+    plt.xlabel('Time')
+    plt.ylabel('sin(x)')
+    def animate(i):
+        ax1.clear()
+        audio = sd.rec(int(1*fs), fs, channels=1)
+        fftAudio = np.abs(fft(audio))
+        t = np.arange(2000)   
+        ax1.plot(t,fftAudio[:2000])
+        plt.axis([0,2000,0,25000])
+        print(Identify(fftAudio))
+        
+    ani = animation.FuncAnimation(fig, animate, interval=100)
+    plt.show()'''
+
+    audio = recordSound(duration)
+    Lenght = np.arange(3000)
+    plt.ion()
+
+    while True:
+        plt.clf()
+        #plt.ylim([-0.4,0.4])
+        fftAudio = np.abs(fft(audio))
+        plt.axis([0,2000/2,0,25000])
+        plt.plot(Lenght,fftAudio[:3000])
+        plt.pause(0.0001)
+        print(Identify(fftAudio))
+        audio =  recordSound(duration)
+
+
 def Identify(fftAudio):
     HFList = []
     peek = 0
@@ -77,15 +111,15 @@ def Identify(fftAudio):
             High.append(v)
         else:
             Low.append(v)
-    keyPad = [[1,2,3,"A"],[4,5,6,"B"],[7,8,9,"C"],["*",0,"#","D"]]
+    keyPad = [[1,2,3,"A","Deu ruin"],[4,5,6,"B","Deu ruin"],[7,8,9,"C","Deu ruin"],["*",0,"#","D","Deu ruin"],["Deu ruin","Deu ruin","Deu ruin","Deu ruin","Deu ruin em dobro"]]
     HighGroup = [1209,1336,1477,1633]
     LowGroup = [697,770,852,941]
-    H = 0
-    L = 0
+    H = 4
+    L = 4
     for i in range(4):
-        if (HighGroup[i] == High[0]):
+        if (len(High) > 0 and HighGroup[i] == High[0]):
             H = i
-        if(LowGroup[i] == Low[0]):
+        if(len(Low) > 0 and LowGroup[i] == Low[0]):
             L = i
 
     print(H,L)
@@ -138,7 +172,15 @@ def recordBeep(duration):
                 choice = (int(input()))
                 if(choice == 1):
                     print(Identify(np.abs(fft(audio))))
-                break
+                    break
+                elif(choice == 2):
+                    print("quantas iterações por segundo:")
+                    wither = int(input())
+                    FourierAoVivaco(1 / wither)
+                    break
+                else:
+                    print("Opção inválida")
+                    break    
             else:
                 print('opção invalida')
 
