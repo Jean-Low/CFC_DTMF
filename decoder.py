@@ -152,8 +152,11 @@ def recordBeep(duration):
                 print('Aplicar transformada de fourier ? (Y ou N)')
                 ft = input()
                 if(ft == 'y'):
-                    fftAudio = np.abs(fft(audio))
+                    fftAudio = DB(np.abs(fft(audio)))
                     plt.plot(np.arange(2000),fftAudio[:2000])
+                    plt.title('Recebido', fontsize=18)
+                    plt.xlabel('Frequencia (Hz)', fontsize=16)
+                    plt.ylabel('Decibel(dB)', fontsize=16)
                     plt.show()
                 elif(ft == 'n'):
                     print('mostrar um zoom do grafico ? (Y ou N)')
