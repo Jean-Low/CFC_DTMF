@@ -83,11 +83,18 @@ def FourierAoVivaco(duration):
         plt.clf()
         #plt.ylim([-0.4,0.4])
         fftAudio = np.abs(fft(audio))
-        plt.axis([0,2000/2,0,25000])
-        plt.plot(Lenght,fftAudio[:3000])
+        plt.axis([0,2000,0,25000])
+        plt.plot(Lenght,DB(fftAudio[:3000]))
         plt.pause(0.0001)
         print(Identify(fftAudio))
         audio =  recordSound(duration)
+
+def DB(energy):
+    convert = []
+    for i in energy:
+        db = 10*math.log10(energy[i]/20000)
+        convert.append(db)
+    return convert
 
 
 def Identify(fftAudio):
