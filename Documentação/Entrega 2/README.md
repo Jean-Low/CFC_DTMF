@@ -1,8 +1,26 @@
-# Entrega 2
+# Projeto 2.1
 
-## Decoder
+Por Jean Luca e Pedro de la Peña
 
-### Fourier dos Sinais
+## Modulação  
+
+A modulação consiste na multiplicação de um sinal por uma portadora, dada pela fórmula
+| p(t) = A*cos(2πf*t) | 
+sendo A a amplitude, fc a frequencia arbitrária da portadora e t o tempo.
+
+Ao realizar a modulação, torna-se possível enviar mais um sinal em um mesmo meio. Contudo, no final da recepção é preciso que ocorra uma demodulação para recuperar os áudios originais. O processo consiste na multiplicação pela portadora anteriormente utilizada. 
+
+## Portadoras utilizadas
+
+A freqquência de corte utilizada foi de 2000Hz. Levando isso em conta, as frequências das duas portadoras utilizadas deveriam ser maiores que o valor de corte e devem ser inferiores ao valor de 22050Hz, metade do valor da frequência de amostragem. Contudo, levamos em conta valores até 18000Hz pois os microfones imbutidos nos (nossos) notebooks não são muito eficazes quando expostos a frequências superiores à estas.
+Além disso, as frequências das portadoras não podem ser muito próximas umas das oturas para não se misturarem e impossibilitarem os audios originais de serem recuperados no final do processo de recepção. 
+Isto posto, temos as frequências de () ().
+
+## Bandas ocupadas
+
+
+## Gráficos
+
 
 | Tom   | Sinal Transmitido       |Sinal Recebido        |
 |:-----:|-------------------------|----------------------|
@@ -18,23 +36,4 @@
 |0      | ![0](img/transmitido0.png)        |![0](img/recebido0.png)      |
 
 
-### Divergências nas frequências enviadas e recebidas
-| Tom   | Frequência Enviada (Hz) |Frequência Recebida (Hz)|
-|:-----:|:-----------------------:|:----------------------:|
-|1      |697, 1209                |697, 1210               |
-|2      |697, 1336                |698, 1336               |
-|3      |697, 1477                |698, 1477               |
-|4      |770, 1209                |770, 1209               |
-|5      |770, 1336                |769, 1335               |
-|6      |770, 1477                |770, 1477               |
-|7      |852, 1209                |851, 1208               |
-|8      |852, 1336                |852, 1336               |
-|9      |852, 1477                |851, 1476               | 
-|0      |941, 1336                |941, 1337               |
 
-
-As divergências ocorrem devido ao fato das transmissões não terem ocorrido em um ambiente ideal e totalmente silencioso, fazendo com que ruidos ocorressem. Além disso, o alto-falante utilizado para a transmissão e o microfone da recepção podem apresentar alguma erro ou desvio de frequência, divergindo da originalmente gerada pelo programa.
-
-### Tempos utilizados
-
-Para o encoder, foi utilizado tempo de 2 segundos para a reprodução do audio, enquanto para o decoder apenas 1 segundo para a recepção. Este periodo é mais que suficiente para a captação integral de um tom, além de ser curto suficiente para impedir a captação de muitos ruídos.
